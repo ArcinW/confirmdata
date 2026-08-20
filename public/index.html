@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>采集确认单项目档案</title>
+    <link rel="stylesheet" href="/styles.css?v=20260820-paperfit">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>采集确认单项目档案</h1>
+        <p>按纸质确认单版式审核识别数据，并对照原始图片。</p>
+      </div>
+      <div class="top-actions">
+        <button id="newProjectBtn" class="ghost" type="button">新建记录</button>
+        <button id="exportJsonBtn" class="ghost" type="button">导出 JSON</button>
+        <button id="exportCsvBtn" class="ghost" type="button">导出 CSV</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="panel records-panel">
+        <div class="panel-title">
+          <h2>项目记录</h2>
+          <span id="recordCount">0 条</span>
+        </div>
+        <input id="searchInput" class="search" type="search" placeholder="搜索餐厅、包间、备注">
+        <div id="recordsList" class="records-list"></div>
+      </aside>
+
+      <section class="sheet-panel">
+        <form id="projectForm">
+          <input id="projectId" type="hidden">
+
+          <article class="paper-page front-page">
+            <div class="front-title">
+              <div>
+                <p>如视VR实景餐厅</p>
+                <h2>采集服务确认单</h2>
+              </div>
+              <div class="logo-strip">美团 ｜ 如视</div>
+            </div>
+
+            <div class="paper-lines">
+              <label class="paper-line restaurant-line">
+                <span>餐厅名称：</span>
+                <input name="restaurantName" type="text">
+              </label>
+              <div class="paper-line muted-line"><span>采集人员：</span><b>不录入</b></div>
+              <div class="paper-line muted-line"><span>采集日期：</span><b>不录入</b></div>
+            </div>
+
+            <section class="paper-block ignored-block">
+              <div class="paper-block-head">
+                <h3>采集准备｜现场确认项目</h3>
+                <span>按当前规则不录入</span>
+              </div>
+              <div class="ignored-grid">
+                <span>灯光全部打开</span>
+                <span>窗帘门帘打开</span>
+                <span>通道是否可正常通行</span>
+                <span>门可正常通行</span>
+                <span>场地提前打扫布置完成</span>
+                <span>前台/吧台是否需要采集</span>
+                <span>场地内特殊布景确认</span>
+                <span>是否有室外空间</span>
+                <span>是否摆台（摆餐具）</span>
+                <span>包间名称</span>
+              </div>
+            </section>
+
+            <section class="paper-block">
+              <div class="paper-block-head">
+                <h3>餐厅基础信息</h3>
+                <button data-add="basic" class="mini" type="button">补充字段</button>
+              </div>
+
+              <div class="basic-paper-table">
+                <label class="basic-wide"><span>餐厅停车场</span><input data-basic-field="餐厅停车场" type="text"></label>
+                <label class="basic-wide"><span>餐厅景观类型</span><input data-basic-field="餐厅景观类型" type="text"></label>
+
+                <label><span>餐厅等位区</span><input data-basic-field="餐厅等位区" type="text"></label>
+                <label><span>可携带宠物区</span><input data-basic-field="可携带宠物区" type="text"></label>
+                <label><span>洗手间</span><input data-basic-field="洗手间" type="text"></label>
+                <label><span>物品寄存区</span><input data-basic-field="物品寄存区" type="text"></label>
+                <label><span>吸烟区</span><input data-basic-field="吸烟区" type="text"></label>
+                <label><span>露台/户外座位</span><input data-basic-field="露台/户外座位" type="text"></label>
+                <label><span>收银台</span><input data-basic-field="收银台" type="text"></label>
+                <label><span>楼梯间/电梯设备</span><input data-basic-field="楼梯间/电梯设备" type="text"></label>
+                <label><span>酒水吧台</span><input data-basic-field="酒水吧台" type="text"></label>
+                <label><span>儿童游乐区</span><input data-basic-field="儿童游乐区" type="text"></label>
+                <label><span>明厨亮灶</span><input data-basic-field="明厨亮灶" type="text"></label>
+                <label><span>生鲜海鲜区</span><input data-basic-field="生鲜海鲜区" type="text"></label>
+                <label><span>母婴室</span><input data-basic-field="母婴室" type="text"></label>
+                <label><span>周边卖货区</span><input data-basic-field="周边卖货区" type="text"></label>
+                <label><span>无障碍设施</span><input data-basic-field="无障碍设施" type="text"></label>
+                <label><span>有舞台设施</span><input data-basic-field="有舞台设施" type="text"></label>
+              </div>
+
+              <div id="extraBasicList" class="extra-basic-list"></div>
+            </section>
+          </article>
+
+          <article class="paper-page back-page">
+            <div class="back-head">
+              <h2>包间信息</h2>
+              <label class="room-total">总包间数量：<input name="totalPrivateRoomCount" type="text"><span>间</span></label>
+            </div>
+
+            <section class="room-service-grid">
+              <label class="service-line"><span>包间是否有服务费</span><input data-booking="serviceFee" type="text"><b>%</b></label>
+              <label class="service-line"><span>茶艺服务</span><input data-booking="teaArtService" type="text"></label>
+              <label class="service-line"><span>预定是否需要订金</span><input data-booking="minimumSpendOrDeposit" type="text"><b>元</b></label>
+              <label class="service-line"><span>分餐服务</span><input data-booking="mealSplittingService" type="text"></label>
+              <label class="service-line"><span>包间是否有专属服务员</span><input data-booking="dedicatedRoomAttendant" type="text"></label>
+              <label class="service-line"><span>提前试菜服务</span><input data-booking="advanceDishDelivery" type="text"></label>
+              <label class="service-line wine-row"><span>包间是否可自带酒水</span><input data-booking="selfServeDrinks" type="text"></label>
+            </section>
+
+            <section class="booking-time-block">
+              <h3>包间可订时间</h3>
+              <label class="booking-days"><span>星期</span><input data-booking="bookableDaysText" type="text"></label>
+              <label class="booking-meal"><span>午餐</span><input data-booking="lunchTime" type="text"></label>
+              <label class="booking-meal"><span>晚餐</span><input data-booking="dinnerTime" type="text"></label>
+              <label class="booking-note"><span>备注</span><input data-booking="bookingTimeNote" type="text"></label>
+            </section>
+
+            <section class="paper-block room-paper-block">
+              <div class="paper-block-head">
+                <h3>包间名称｜可容纳人数</h3>
+                <button data-add="room" class="mini" type="button">添加包间</button>
+              </div>
+              <div class="room-paper-head">
+                <span>包间名称</span><span>可容纳人数</span><span>包间名称</span><span>可容纳人数</span>
+              </div>
+              <div id="roomList" class="room-paper-list">
+                <div class="room-paper-column" data-room-column="left"></div>
+                <div class="room-paper-column" data-room-column="right"></div>
+              </div>
+            </section>
+
+            <section class="bottom-lines">
+              <div class="paper-line muted-line"><span>采集完成时间：</span><b>不录入</b></div>
+              <label class="paper-line">
+                <span>采集作业情况补充：</span>
+                <textarea name="projectNotes" rows="2"></textarea>
+              </label>
+              <div class="paper-line muted-line"><span>联系方式：</span><b>不录入</b></div>
+              <div class="paper-line muted-line"><span>对接人签名：</span><b>不录入</b></div>
+            </section>
+          </article>
+
+          <div class="form-actions">
+            <button id="saveProjectBtn" class="primary" type="submit">保存修改</button>
+            <button id="copyJsonBtn" class="ghost" type="button">复制当前 JSON</button>
+            <button id="deleteProjectBtn" class="ghost danger" type="button">删除记录</button>
+          </div>
+          <div id="status" class="status" role="status"></div>
+        </form>
+      </section>
+
+      <aside class="panel image-panel">
+        <div class="panel-title">
+          <h2>原始图片</h2>
+          <span id="imageCount">0 张</span>
+        </div>
+        <div id="imageTabs" class="image-tabs"></div>
+        <div id="imageViewer" class="image-viewer"></div>
+      </aside>
+    </main>
+
+    <template id="basicTemplate">
+      <div class="extra-basic-row">
+        <input data-field="field" type="text" placeholder="字段">
+        <input data-field="value" type="text" placeholder="选中值">
+        <input data-field="note" type="text" placeholder="备注">
+        <button class="icon danger" data-remove type="button" title="删除">×</button>
+      </div>
+    </template>
+
+    <template id="roomTemplate">
+      <div class="room-paper-row">
+        <input data-field="column" type="hidden" value="left">
+        <div class="room-cell">
+          <input data-field="roomName" type="text" placeholder="包间名称">
+        </div>
+        <div class="capacity-cell">
+          <input data-field="minPeople" type="number" min="0" placeholder="最少">
+          <span>至</span>
+          <input data-field="maxPeople" type="number" min="0" placeholder="最多">
+          <button class="icon danger" data-remove type="button" title="删除">×</button>
+        </div>
+      </div>
+    </template>
+
+    <script type="module" src="/app.js?v=20260820-paperfit"></script>
+  </body>
+</html>

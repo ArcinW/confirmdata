@@ -1,0 +1,486 @@
+[
+  {
+    "id": "09d44c89-5824-4454-b610-47c80e3117af",
+    "restaurantName": "碳刘十蚝·和牛烧肉会馆",
+    "totalPrivateRoomCount": "5",
+    "projectNotes": null,
+    "warnings": [],
+    "overallConfidence": null,
+    "basics": [
+      {
+        "field": "餐厅停车场",
+        "selectedValues": [
+          "路边停车场"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "餐厅景观类型",
+        "selectedValues": [
+          "其他"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "餐厅等位区",
+        "selectedValues": [
+          "室内",
+          "室外"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "可携带宠物区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "洗手间",
+        "selectedValues": [
+          "餐厅外"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "物品寄存区",
+        "selectedValues": [
+          "餐厅内"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "吸烟区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "露台/户外座位",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "收银台",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "楼梯间/电梯设备",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "酒水吧台",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "儿童游乐区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "明厨亮灶",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "生鲜海鲜区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "母婴室",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "周边卖货区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "无障碍设施",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "有舞台设施",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      }
+    ],
+    "roomBooking": {
+      "serviceFee": "无",
+      "minimumSpendOrDeposit": "否",
+      "dedicatedRoomAttendant": "有",
+      "selfServeDrinks": "是",
+      "teaArtService": "无",
+      "mealSplittingService": "有",
+      "advanceDishDelivery": "无",
+      "bookableDays": [
+        "全部"
+      ],
+      "lunchTime": "11:30-14:00",
+      "dinnerTime": "17:00-22:00",
+      "bookingTimeNote": "11:00-22:00"
+    },
+    "privateRooms": [
+      {
+        "roomName": "天蒸",
+        "minPeople": 4,
+        "maxPeople": 6,
+        "rawCapacity": "4 至 6",
+        "note": null,
+        "column": "left",
+        "confidence": 0.65
+      },
+      {
+        "roomName": "旬尝",
+        "minPeople": 4,
+        "maxPeople": 6,
+        "rawCapacity": "4 至 6",
+        "note": null,
+        "column": "left",
+        "confidence": 0.65
+      },
+      {
+        "roomName": "黑羽",
+        "minPeople": 2,
+        "maxPeople": 4,
+        "rawCapacity": "2 至 4",
+        "note": null,
+        "column": "left",
+        "confidence": 0.82
+      },
+      {
+        "roomName": "浅草",
+        "minPeople": 2,
+        "maxPeople": 4,
+        "rawCapacity": "2 至 4",
+        "note": null,
+        "column": "left",
+        "confidence": 0.82
+      },
+      {
+        "roomName": "郭时",
+        "minPeople": 4,
+        "maxPeople": 8,
+        "rawCapacity": "4 至 8",
+        "note": null,
+        "column": "left",
+        "confidence": 0.62
+      }
+    ],
+    "sourceImages": [
+      {
+        "name": "下载.jpg",
+        "type": "image/jpeg",
+        "side": "正面",
+        "path": "D:\\Users\\User\\Desktop\\美团\\D 商家交付物料\\自动海报\\测试\\下载.jpg"
+      },
+      {
+        "name": "下载 (1).jpg",
+        "type": "image/jpeg",
+        "side": "反面",
+        "path": "D:\\Users\\User\\Desktop\\美团\\D 商家交付物料\\自动海报\\测试\\下载 (1).jpg"
+      }
+    ],
+    "updatedAt": "2026-08-10T18:37:52.3938591+08:00",
+    "createdAt": "2026-08-10T18:37:52.3938591+08:00"
+  },
+  {
+    "id": "ae0a4e7f-be91-40e4-8b24-b35bf1e2fc1b",
+    "restaurantName": "甲乙烧烤 东沁寨",
+    "totalPrivateRoomCount": "7",
+    "projectNotes": null,
+    "warnings": [],
+    "overallConfidence": null,
+    "basics": [
+      {
+        "field": "餐厅停车场",
+        "selectedValues": [
+          "门口独立停车场"
+        ],
+        "note": null,
+        "confidence": 0.94
+      },
+      {
+        "field": "餐厅景观类型",
+        "selectedValues": [
+          "其他"
+        ],
+        "note": null,
+        "confidence": 0.94
+      },
+      {
+        "field": "餐厅等位区",
+        "selectedValues": [
+          "室内"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "可携带宠物区",
+        "selectedValues": [
+          "室外"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "洗手间",
+        "selectedValues": [
+          "餐厅内",
+          "餐厅外"
+        ],
+        "note": null,
+        "confidence": 0.78
+      },
+      {
+        "field": "物品寄存区",
+        "selectedValues": [
+          "餐厅内"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "吸烟区",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "露台/户外座位",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "收银台",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "楼梯间/电梯设备",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "酒水吧台",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "儿童游乐区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "明厨亮灶",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.9
+      },
+      {
+        "field": "生鲜海鲜区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "母婴室",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "周边卖货区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "无障碍设施",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "有舞台设施",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      }
+    ],
+    "roomBooking": {
+      "serviceFee": "无",
+      "minimumSpendOrDeposit": "否",
+      "dedicatedRoomAttendant": "有",
+      "selfServeDrinks": "是、啤酒、红酒",
+      "teaArtService": "无",
+      "mealSplittingService": "无",
+      "advanceDishDelivery": "无",
+      "bookableDays": [
+        "全部"
+      ],
+      "lunchTime": null,
+      "dinnerTime": "6:00-2:00",
+      "bookingTimeNote": null
+    },
+    "privateRooms": [
+      {
+        "roomName": "八仙",
+        "minPeople": 10,
+        "maxPeople": 15,
+        "rawCapacity": "10 至 15",
+        "note": null,
+        "column": "left",
+        "confidence": 0.9
+      },
+      {
+        "roomName": "九龙",
+        "minPeople": 10,
+        "maxPeople": 15,
+        "rawCapacity": "10 至 15",
+        "note": null,
+        "column": "left",
+        "confidence": 0.9
+      },
+      {
+        "roomName": "四通",
+        "minPeople": 6,
+        "maxPeople": 10,
+        "rawCapacity": "6 至 10",
+        "note": null,
+        "column": "left",
+        "confidence": 0.9
+      },
+      {
+        "roomName": "五福",
+        "minPeople": 6,
+        "maxPeople": 8,
+        "rawCapacity": "6 至 8",
+        "note": null,
+        "column": "left",
+        "confidence": 0.9
+      },
+      {
+        "roomName": "六顺",
+        "minPeople": 6,
+        "maxPeople": 8,
+        "rawCapacity": "6 至 8",
+        "note": null,
+        "column": "left",
+        "confidence": 0.88
+      },
+      {
+        "roomName": "七星",
+        "minPeople": 6,
+        "maxPeople": 10,
+        "rawCapacity": "6 至 10",
+        "note": null,
+        "column": "left",
+        "confidence": 0.9
+      },
+      {
+        "roomName": "十全",
+        "minPeople": 20,
+        "maxPeople": 25,
+        "rawCapacity": "20 至 25",
+        "note": null,
+        "column": "left",
+        "confidence": 0.88
+      }
+    ],
+    "sourceImages": [
+      {
+        "name": "d1f84f2ee03b4ff6e7a8eac5206356a4.jpg",
+        "type": "image/jpeg",
+        "side": "正面",
+        "path": "D:\\Users\\User\\Desktop\\美团\\7月8月采集确认单信息展示\\纸质单子\\d1f84f2ee03b4ff6e7a8eac5206356a4.jpg"
+      },
+      {
+        "name": "8dfb7cbabf532353a65860a07001c1f0.jpg",
+        "type": "image/jpeg",
+        "side": "反面",
+        "path": "D:\\Users\\User\\Desktop\\美团\\7月8月采集确认单信息展示\\纸质单子\\8dfb7cbabf532353a65860a07001c1f0.jpg"
+      }
+    ],
+    "updatedAt": "2026-08-11T12:41:15.1454901+08:00",
+    "createdAt": "2026-08-11T12:41:15.1454901+08:00"
+  }
+]
