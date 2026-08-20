@@ -1,8 +1,20 @@
 [
   {
     "id": "09d44c89-5824-4454-b610-47c80e3117af",
-    "restaurantName": "碳刘十蚝·和牛烧肉会馆",
+    "restaurantName": "板前十胜·和牛烧肉专门店（北京总店）",
+    "resource_code": "",
+    "custom_code": "",
+    "status": "已审核",
+    "areaInfoStatus": "已填写",
+    "projectEditUrl": "",
+    "starred": false,
+    "remarks": [],
     "totalPrivateRoomCount": "5",
+    "privateRoomSummary": {
+      "roomCount": 5,
+      "minPeople": 2,
+      "maxPeople": 8
+    },
     "projectNotes": null,
     "warnings": [],
     "overallConfidence": null,
@@ -13,7 +25,7 @@
           "路边停车场"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "餐厅景观类型",
@@ -21,16 +33,15 @@
           "其他"
         ],
         "note": null,
-        "confidence": 0.9
+        "confidence": 1
       },
       {
         "field": "餐厅等位区",
         "selectedValues": [
-          "室内",
-          "室外"
+          "室内"
         ],
         "note": null,
-        "confidence": 0.9
+        "confidence": 1
       },
       {
         "field": "可携带宠物区",
@@ -38,7 +49,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.9
+        "confidence": 1
       },
       {
         "field": "洗手间",
@@ -46,7 +57,7 @@
           "餐厅外"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "物品寄存区",
@@ -54,7 +65,7 @@
           "餐厅内"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "吸烟区",
@@ -62,7 +73,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "露台/户外座位",
@@ -70,7 +81,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "收银台",
@@ -78,7 +89,7 @@
           "有"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "楼梯间/电梯设备",
@@ -86,7 +97,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "酒水吧台",
@@ -94,7 +105,7 @@
           "有"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "儿童游乐区",
@@ -102,7 +113,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "明厨亮灶",
@@ -110,7 +121,7 @@
           "有"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "生鲜海鲜区",
@@ -118,7 +129,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "母婴室",
@@ -126,7 +137,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "周边卖货区",
@@ -134,7 +145,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "无障碍设施",
@@ -142,7 +153,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       },
       {
         "field": "有舞台设施",
@@ -150,7 +161,7 @@
           "无"
         ],
         "note": null,
-        "confidence": 0.92
+        "confidence": 1
       }
     ],
     "roomBooking": {
@@ -164,78 +175,44 @@
       "bookableDays": [
         "全部"
       ],
-      "lunchTime": "11:30-14:00",
-      "dinnerTime": "17:00-22:00",
-      "bookingTimeNote": "11:00-22:00"
+      "lunchTime": "周一至周五 11:30-14:00",
+      "dinnerTime": "周一至周五 17:00-22:00",
+      "bookingTimeNote": "周六周日 11:00-22:00"
     },
-    "privateRooms": [
-      {
-        "roomName": "天蒸",
-        "minPeople": 4,
-        "maxPeople": 6,
-        "rawCapacity": "4 至 6",
-        "note": null,
-        "column": "left",
-        "confidence": 0.65
-      },
-      {
-        "roomName": "旬尝",
-        "minPeople": 4,
-        "maxPeople": 6,
-        "rawCapacity": "4 至 6",
-        "note": null,
-        "column": "left",
-        "confidence": 0.65
-      },
-      {
-        "roomName": "黑羽",
-        "minPeople": 2,
-        "maxPeople": 4,
-        "rawCapacity": "2 至 4",
-        "note": null,
-        "column": "left",
-        "confidence": 0.82
-      },
-      {
-        "roomName": "浅草",
-        "minPeople": 2,
-        "maxPeople": 4,
-        "rawCapacity": "2 至 4",
-        "note": null,
-        "column": "left",
-        "confidence": 0.82
-      },
-      {
-        "roomName": "郭时",
-        "minPeople": 4,
-        "maxPeople": 8,
-        "rawCapacity": "4 至 8",
-        "note": null,
-        "column": "left",
-        "confidence": 0.62
-      }
-    ],
+    "privateRooms": [],
     "sourceImages": [
       {
         "name": "下载.jpg",
         "type": "image/jpeg",
         "side": "正面",
-        "path": "D:\\Users\\User\\Desktop\\美团\\D 商家交付物料\\自动海报\\测试\\下载.jpg"
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\09d44c89-front.jpg"
       },
       {
         "name": "下载 (1).jpg",
         "type": "image/jpeg",
         "side": "反面",
-        "path": "D:\\Users\\User\\Desktop\\美团\\D 商家交付物料\\自动海报\\测试\\下载 (1).jpg"
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\09d44c89-back.jpg"
       }
     ],
-    "updatedAt": "2026-08-10T18:37:52.3938591+08:00",
+    "updatedAt": "2026-08-20T11:07:51.308Z",
     "createdAt": "2026-08-10T18:37:52.3938591+08:00"
   },
   {
     "id": "ae0a4e7f-be91-40e4-8b24-b35bf1e2fc1b",
-    "restaurantName": "甲乙烧烤 东沁寨",
+    "restaurantName": "申记东北菜 · 烧烤（西安旗舰店）",
+    "resource_code": "",
+    "custom_code": "",
+    "status": "待审核",
+    "areaInfoStatus": "已填写",
+    "projectEditUrl": "",
+    "starred": false,
+    "remarks": [],
     "totalPrivateRoomCount": "7",
+    "privateRoomSummary": {
+      "roomCount": 7,
+      "minPeople": 6,
+      "maxPeople": 25
+    },
     "projectNotes": null,
     "warnings": [],
     "overallConfidence": null,
@@ -401,86 +378,220 @@
       "dinnerTime": "6:00-2:00",
       "bookingTimeNote": null
     },
-    "privateRooms": [
-      {
-        "roomName": "八仙",
-        "minPeople": 10,
-        "maxPeople": 15,
-        "rawCapacity": "10 至 15",
-        "note": null,
-        "column": "left",
-        "confidence": 0.9
-      },
-      {
-        "roomName": "九龙",
-        "minPeople": 10,
-        "maxPeople": 15,
-        "rawCapacity": "10 至 15",
-        "note": null,
-        "column": "left",
-        "confidence": 0.9
-      },
-      {
-        "roomName": "四通",
-        "minPeople": 6,
-        "maxPeople": 10,
-        "rawCapacity": "6 至 10",
-        "note": null,
-        "column": "left",
-        "confidence": 0.9
-      },
-      {
-        "roomName": "五福",
-        "minPeople": 6,
-        "maxPeople": 8,
-        "rawCapacity": "6 至 8",
-        "note": null,
-        "column": "left",
-        "confidence": 0.9
-      },
-      {
-        "roomName": "六顺",
-        "minPeople": 6,
-        "maxPeople": 8,
-        "rawCapacity": "6 至 8",
-        "note": null,
-        "column": "left",
-        "confidence": 0.88
-      },
-      {
-        "roomName": "七星",
-        "minPeople": 6,
-        "maxPeople": 10,
-        "rawCapacity": "6 至 10",
-        "note": null,
-        "column": "left",
-        "confidence": 0.9
-      },
-      {
-        "roomName": "十全",
-        "minPeople": 20,
-        "maxPeople": 25,
-        "rawCapacity": "20 至 25",
-        "note": null,
-        "column": "left",
-        "confidence": 0.88
-      }
-    ],
+    "privateRooms": [],
     "sourceImages": [
       {
-        "name": "d1f84f2ee03b4ff6e7a8eac5206356a4.jpg",
+        "name": "ae0a4e7f-front.jpg",
         "type": "image/jpeg",
         "side": "正面",
-        "path": "D:\\Users\\User\\Desktop\\美团\\7月8月采集确认单信息展示\\纸质单子\\d1f84f2ee03b4ff6e7a8eac5206356a4.jpg"
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\ae0a4e7f-front.jpg"
       },
       {
-        "name": "8dfb7cbabf532353a65860a07001c1f0.jpg",
+        "name": "ae0a4e7f-back.jpg",
         "type": "image/jpeg",
         "side": "反面",
-        "path": "D:\\Users\\User\\Desktop\\美团\\7月8月采集确认单信息展示\\纸质单子\\8dfb7cbabf532353a65860a07001c1f0.jpg"
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\ae0a4e7f-back.jpg"
       }
     ],
-    "updatedAt": "2026-08-11T12:41:15.1454901+08:00",
+    "updatedAt": "2026-08-20T11:10:37.988Z",
     "createdAt": "2026-08-11T12:41:15.1454901+08:00"
+  },
+  {
+    "id": "gz-changgang-20260814",
+    "status": "待审核",
+    "starred": false,
+    "remarks": [],
+    "warnings": [],
+    "overallConfidence": null,
+    "createdAt": "2026-08-20T07:44:12.684Z",
+    "restaurantName": "广州酒家（昌岗地铁站店）",
+    "totalPrivateRoomCount": "12",
+    "projectNotes": "所有动线经过确认后拍摄",
+    "basics": [
+      {
+        "field": "餐厅停车场",
+        "selectedValues": [
+          "地下停车场"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "餐厅景观类型",
+        "selectedValues": [
+          "城市景观"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "餐厅等位区",
+        "selectedValues": [
+          "室内"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "可携带宠物区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "洗手间",
+        "selectedValues": [
+          "餐厅内"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "物品寄存区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "吸烟区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "露台/户外座位",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "收银台",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "楼梯间/电梯设备",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "酒水吧台",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "儿童游乐区",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "明厨亮灶",
+        "selectedValues": [
+          "无"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "生鲜海鲜区",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "母婴室",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "周边卖货区",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "无障碍设施",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      },
+      {
+        "field": "有舞台设施",
+        "selectedValues": [
+          "有"
+        ],
+        "note": null,
+        "confidence": 0.92
+      }
+    ],
+    "roomBooking": {
+      "serviceFee": "有、10%",
+      "minimumSpendOrDeposit": "是、300元",
+      "dedicatedRoomAttendant": "有",
+      "selfServeDrinks": "是",
+      "teaArtService": "有",
+      "mealSplittingService": "有",
+      "advanceDishDelivery": "有",
+      "bookableDays": [
+        "全部"
+      ],
+      "lunchTime": "08:30-16:30",
+      "dinnerTime": "17:15-21:30",
+      "bookingTimeNote": null
+    },
+    "privateRooms": [],
+    "sourceImages": [
+      {
+        "name": "guangzhou-changgang-front.jpg",
+        "type": "image/jpeg",
+        "side": "正面",
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\guangzhou-changgang-front.jpg"
+      },
+      {
+        "name": "guangzhou-changgang-back.jpg",
+        "type": "image/jpeg",
+        "side": "反面",
+        "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\guangzhou-changgang-back.jpg"
+      }
+    ],
+    "updatedAt": "2026-08-20T07:45:09.316Z",
+    "privateRoomSummary": {
+      "roomCount": 12,
+      "minPeople": 4,
+      "maxPeople": 22
+    },
+    "resource_code": "",
+    "custom_code": "",
+    "projectEditUrl": "",
+    "areaInfoStatus": "待填写"
   }
 ]

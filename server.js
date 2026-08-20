@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "public");
 const dataDir = path.join(__dirname, "data");
 const projectsPath = path.join(dataDir, "projects.json");
+const packageInfoPath = path.join(dataDir, "package.json");
 const port = Number(process.env.PORT || 5173);
 const imageRoots = [
   path.join(publicDir, "originals"),
@@ -43,6 +44,20 @@ async function readProjects() {
     return Array.isArray(data) ? data : [];
   } catch {
     return [];
+  }
+}
+
+async function readPackageInfo() {
+  await ensureStore();
+  try {
+    const data = JSON.parse(await fs.readFile(packageInfoPath, "utf8"));
+    return {
+      packageName: data.packageName || path.basename(__dirname)
+    };
+  } catch {
+    return {
+      packageName: path.basename(__dirname)
+    };
   }
 }
 
@@ -149,21 +164,15 @@ const extractionSchema = {
         "bookingTimeNote"
       ]
     },
-    privateRooms: {
-      type: "array",
-      items: {
-        type: "object",
-        additionalProperties: false,
-        properties: {
-          roomName: { type: ["string", "null"] },
-          minPeople: { type: ["number", "null"] },
-          maxPeople: { type: ["number", "null"] },
-          rawCapacity: { type: ["string", "null"] },
-          note: { type: ["string", "null"] },
-          confidence: { type: "number" }
-        },
-        required: ["roomName", "minPeople", "maxPeople", "rawCapacity", "note", "confidence"]
-      }
+    privateRoomSummary: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        roomCount: { type: ["number", "null"] },
+        minPeople: { type: ["number", "null"] },
+        maxPeople: { type: ["number", "null"] }
+      },
+      required: ["roomCount", "minPeople", "maxPeople"]
     },
     warnings: { type: "array", items: { type: "string" } },
     overallConfidence: { type: "number" }
@@ -174,7 +183,7 @@ const extractionSchema = {
     "projectNotes",
     "basics",
     "roomBooking",
-    "privateRooms",
+    "privateRoomSummary",
     "warnings",
     "overallConfidence"
   ]
@@ -187,7 +196,7 @@ function buildPrompt(extraNote = "") {
     "不要识别、不要输出这些字段：采集日期、采集人员、采集完成时间、联系方式、对接人签名、现场确认项目。",
     "只记录确认单上真实出现的信息；看不清时填 null 或空数组，并在 warnings 写明。",
     "勾选框判断以手写对勾为准，不要把灰色印刷方块误判为已选。",
-    "人数范围需要拆成 minPeople 和 maxPeople；例如“4 至 6”输出 4 和 6。",
+    "包间表格只输出汇总信息 privateRoomSummary：roomCount 为填写了多少个包间，minPeople 为所有包间可容纳人数里的最低人数，maxPeople 为所有包间可容纳人数里的最高人数；不要识别或输出包间名称、逐个包间列表。",
     "日期尽量标准化为 YYYY-MM-DD；若年份或月份不确定，保留原文并在 warnings 说明。",
     "项目数据要便于后续做自动海报或项目交付追踪，所以不要输出解释文字，只输出 JSON。",
     extraNote ? `额外说明：${extraNote}` : ""
@@ -283,6 +292,11 @@ async function handleApi(req, res) {
 
   if (req.method === "GET" && url.pathname === "/api/projects") {
     sendJson(res, 200, { projects: await readProjects() });
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/package-info") {
+    sendJson(res, 200, await readPackageInfo());
     return;
   }
 
