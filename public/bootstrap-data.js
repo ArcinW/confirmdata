@@ -1,0 +1,602 @@
+window.__PROJECT_BOOTSTRAP__ = {
+  "packageInfo": {
+    "packageName": "美团1-100"
+  },
+  "projects": [
+    {
+      "id": "09d44c89-5824-4454-b610-47c80e3117af",
+      "restaurantName": "板前十胜·和牛烧肉专门店（北京总店）",
+      "resource_code": "",
+      "custom_code": "",
+      "status": "已审核",
+      "areaInfoStatus": "已填写",
+      "projectEditUrl": "",
+      "starred": false,
+      "remarks": [],
+      "totalPrivateRoomCount": "5",
+      "privateRoomSummary": {
+        "roomCount": 5,
+        "minPeople": 2,
+        "maxPeople": 8
+      },
+      "projectNotes": null,
+      "warnings": [],
+      "overallConfidence": null,
+      "basics": [
+        {
+          "field": "餐厅停车场",
+          "selectedValues": [
+            "路边停车场"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "餐厅景观类型",
+          "selectedValues": [
+            "其他"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "餐厅等位区",
+          "selectedValues": [
+            "室内"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "可携带宠物区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "洗手间",
+          "selectedValues": [
+            "餐厅外"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "物品寄存区",
+          "selectedValues": [
+            "餐厅内"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "吸烟区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "露台/户外座位",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "收银台",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "楼梯间/电梯设备",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "酒水吧台",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "儿童游乐区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "明厨亮灶",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "生鲜海鲜区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "母婴室",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "周边卖货区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "无障碍设施",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        },
+        {
+          "field": "有舞台设施",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 1
+        }
+      ],
+      "roomBooking": {
+        "serviceFee": "无",
+        "minimumSpendOrDeposit": "否",
+        "dedicatedRoomAttendant": "有",
+        "selfServeDrinks": "是",
+        "teaArtService": "无",
+        "mealSplittingService": "有",
+        "advanceDishDelivery": "无",
+        "bookableDays": [
+          "全部"
+        ],
+        "lunchTime": "周一至周五 11:30-14:00",
+        "dinnerTime": "周一至周五 17:00-22:00",
+        "bookingTimeNote": "周六周日 11:00-22:00"
+      },
+      "privateRooms": [],
+      "sourceImages": [
+        {
+          "name": "下载.jpg",
+          "type": "image/jpeg",
+          "side": "正面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\09d44c89-front.jpg"
+        },
+        {
+          "name": "下载 (1).jpg",
+          "type": "image/jpeg",
+          "side": "反面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\09d44c89-back.jpg"
+        }
+      ],
+      "updatedAt": "2026-08-20T11:07:51.308Z",
+      "createdAt": "2026-08-10T18:37:52.3938591+08:00"
+    },
+    {
+      "id": "ae0a4e7f-be91-40e4-8b24-b35bf1e2fc1b",
+      "restaurantName": "申记东北菜 · 烧烤（西安旗舰店）",
+      "resource_code": "",
+      "custom_code": "",
+      "status": "待审核",
+      "areaInfoStatus": "已填写",
+      "projectEditUrl": "",
+      "starred": false,
+      "remarks": [],
+      "totalPrivateRoomCount": "7",
+      "privateRoomSummary": {
+        "roomCount": 7,
+        "minPeople": 6,
+        "maxPeople": 25
+      },
+      "projectNotes": null,
+      "warnings": [],
+      "overallConfidence": null,
+      "basics": [
+        {
+          "field": "餐厅停车场",
+          "selectedValues": [
+            "门口独立停车场"
+          ],
+          "note": null,
+          "confidence": 0.94
+        },
+        {
+          "field": "餐厅景观类型",
+          "selectedValues": [
+            "其他"
+          ],
+          "note": null,
+          "confidence": 0.94
+        },
+        {
+          "field": "餐厅等位区",
+          "selectedValues": [
+            "室内"
+          ],
+          "note": null,
+          "confidence": 0.9
+        },
+        {
+          "field": "可携带宠物区",
+          "selectedValues": [
+            "室外"
+          ],
+          "note": null,
+          "confidence": 0.9
+        },
+        {
+          "field": "洗手间",
+          "selectedValues": [
+            "餐厅内",
+            "餐厅外"
+          ],
+          "note": null,
+          "confidence": 0.78
+        },
+        {
+          "field": "物品寄存区",
+          "selectedValues": [
+            "餐厅内"
+          ],
+          "note": null,
+          "confidence": 0.9
+        },
+        {
+          "field": "吸烟区",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "露台/户外座位",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "收银台",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "楼梯间/电梯设备",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "酒水吧台",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "儿童游乐区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "明厨亮灶",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.9
+        },
+        {
+          "field": "生鲜海鲜区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "母婴室",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "周边卖货区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "无障碍设施",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "有舞台设施",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        }
+      ],
+      "roomBooking": {
+        "serviceFee": "无",
+        "minimumSpendOrDeposit": "否",
+        "dedicatedRoomAttendant": "有",
+        "selfServeDrinks": "是、啤酒、红酒",
+        "teaArtService": "无",
+        "mealSplittingService": "无",
+        "advanceDishDelivery": "无",
+        "bookableDays": [
+          "全部"
+        ],
+        "lunchTime": null,
+        "dinnerTime": "6:00-2:00",
+        "bookingTimeNote": null
+      },
+      "privateRooms": [],
+      "sourceImages": [
+        {
+          "name": "ae0a4e7f-front.jpg",
+          "type": "image/jpeg",
+          "side": "正面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\ae0a4e7f-front.jpg"
+        },
+        {
+          "name": "ae0a4e7f-back.jpg",
+          "type": "image/jpeg",
+          "side": "反面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\ae0a4e7f-back.jpg"
+        }
+      ],
+      "updatedAt": "2026-08-21T02:25:32.268Z",
+      "createdAt": "2026-08-11T12:41:15.1454901+08:00"
+    },
+    {
+      "id": "gz-changgang-20260814",
+      "restaurantName": "广州酒家（昌岗地铁站店）",
+      "resource_code": "",
+      "custom_code": "",
+      "status": "待审核",
+      "areaInfoStatus": "待填写",
+      "projectEditUrl": "",
+      "starred": false,
+      "remarks": [],
+      "totalPrivateRoomCount": "12",
+      "privateRoomSummary": {
+        "roomCount": 12,
+        "minPeople": 4,
+        "maxPeople": 22
+      },
+      "projectNotes": "所有动线经过确认后拍摄",
+      "warnings": [],
+      "overallConfidence": null,
+      "basics": [
+        {
+          "field": "餐厅停车场",
+          "selectedValues": [
+            "地下停车场"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "餐厅景观类型",
+          "selectedValues": [
+            "城市景观"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "餐厅等位区",
+          "selectedValues": [
+            "室内"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "可携带宠物区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "洗手间",
+          "selectedValues": [
+            "餐厅内"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "物品寄存区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "吸烟区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "露台/户外座位",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "收银台",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "楼梯间/电梯设备",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "酒水吧台",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "儿童游乐区",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "明厨亮灶",
+          "selectedValues": [
+            "无"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "生鲜海鲜区",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "母婴室",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "周边卖货区",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "无障碍设施",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        },
+        {
+          "field": "有舞台设施",
+          "selectedValues": [
+            "有"
+          ],
+          "note": null,
+          "confidence": 0.92
+        }
+      ],
+      "roomBooking": {
+        "serviceFee": "有、10%",
+        "minimumSpendOrDeposit": "是、300元",
+        "dedicatedRoomAttendant": "有",
+        "selfServeDrinks": "是",
+        "teaArtService": "有",
+        "mealSplittingService": "有",
+        "advanceDishDelivery": "有",
+        "bookableDays": [
+          "全部"
+        ],
+        "lunchTime": "08:30-16:30",
+        "dinnerTime": "17:15-21:30",
+        "bookingTimeNote": null
+      },
+      "privateRooms": [],
+      "sourceImages": [
+        {
+          "name": "guangzhou-changgang-front.jpg",
+          "type": "image/jpeg",
+          "side": "正面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\guangzhou-changgang-front.jpg"
+        },
+        {
+          "name": "guangzhou-changgang-back.jpg",
+          "type": "image/jpeg",
+          "side": "反面",
+          "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\guangzhou-changgang-back.jpg"
+        }
+      ],
+      "createdAt": "2026-08-20T07:44:12.684Z",
+      "updatedAt": "2026-08-21T02:25:33.529Z"
+    }
+  ]
+};

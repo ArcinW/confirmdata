@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { spawn } from "node:child_process";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "public");
@@ -10,6 +11,7 @@ const dataDir = path.join(__dirname, "data");
 const projectsPath = path.join(dataDir, "projects.json");
 const packageInfoPath = path.join(dataDir, "package.json");
 const port = Number(process.env.PORT || 5173);
+const maxPort = Number(process.env.MAX_PORT || port + 7);
 const imageRoots = [
   path.join(publicDir, "originals"),
   process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "Desktop", "美团") : "",
@@ -367,7 +369,52 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+function openBrowser(url) {
+  if (process.env.AUTO_OPEN !== "1") return;
+  const command = process.platform === "win32"
+    ? ["cmd", ["/c", "start", "", url]]
+    : process.platform === "darwin"
+      ? ["open", [url]]
+      : ["xdg-open", [url]];
+
+  try {
+    const child = spawn(command[0], command[1], {
+      detached: true,
+      stdio: "ignore"
+    });
+    child.unref();
+  } catch {
+    // The printed URL remains available if the OS cannot open a browser.
+  }
+}
+
+function listenOnPort(candidatePort) {
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      server.off("error", onError);
+      server.off("listening", onListening);
+    };
+    const onError = (error) => {
+      cleanup();
+      if (error.code === "EADDRINUSE" && candidatePort < maxPort) {
+        listenOnPort(candidatePort + 1).then(resolve, reject);
+        return;
+      }
+      reject(error);
+    };
+    const onListening = () => {
+      cleanup();
+      resolve(candidatePort);
+    };
+
+    server.once("error", onError);
+    server.once("listening", onListening);
+    server.listen(candidatePort, "127.0.0.1");
+  });
+}
+
 await ensureStore();
-server.listen(port, () => {
-  console.log(`采集确认单项目工具已启动：http://localhost:${port}`);
-});
+const activePort = await listenOnPort(port);
+const localUrl = `http://127.0.0.1:${activePort}/`;
+console.log(`采集确认单项目工具已启动：${localUrl}`);
+openBrowser(localUrl);

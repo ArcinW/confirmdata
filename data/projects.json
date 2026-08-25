@@ -393,20 +393,28 @@
         "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\ae0a4e7f-back.jpg"
       }
     ],
-    "updatedAt": "2026-08-20T11:10:37.988Z",
+    "updatedAt": "2026-08-21T02:25:32.268Z",
     "createdAt": "2026-08-11T12:41:15.1454901+08:00"
   },
   {
     "id": "gz-changgang-20260814",
+    "restaurantName": "广州酒家（昌岗地铁站店）",
+    "resource_code": "",
+    "custom_code": "",
     "status": "待审核",
+    "areaInfoStatus": "待填写",
+    "projectEditUrl": "",
     "starred": false,
     "remarks": [],
+    "totalPrivateRoomCount": "12",
+    "privateRoomSummary": {
+      "roomCount": 12,
+      "minPeople": 4,
+      "maxPeople": 22
+    },
+    "projectNotes": "所有动线经过确认后拍摄",
     "warnings": [],
     "overallConfidence": null,
-    "createdAt": "2026-08-20T07:44:12.684Z",
-    "restaurantName": "广州酒家（昌岗地铁站店）",
-    "totalPrivateRoomCount": "12",
-    "projectNotes": "所有动线经过确认后拍摄",
     "basics": [
       {
         "field": "餐厅停车场",
@@ -583,15 +591,7 @@
         "path": "D:\\Users\\User\\Documents\\ai photo\\public\\originals\\guangzhou-changgang-back.jpg"
       }
     ],
-    "updatedAt": "2026-08-20T07:45:09.316Z",
-    "privateRoomSummary": {
-      "roomCount": 12,
-      "minPeople": 4,
-      "maxPeople": 22
-    },
-    "resource_code": "",
-    "custom_code": "",
-    "projectEditUrl": "",
-    "areaInfoStatus": "待填写"
+    "createdAt": "2026-08-20T07:44:12.684Z",
+    "updatedAt": "2026-08-21T02:25:33.529Z"
   }
 ]

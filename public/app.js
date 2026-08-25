@@ -9,6 +9,9 @@ const state = {
   isSaving: false
 };
 
+const isStaticMode = location.protocol === "file:";
+const localStorePrefix = "confirmdata";
+
 const auditStatuses = ["待审核", "已审核"];
 const areaInfoStatuses = ["待填写", "已填写"];
 
@@ -78,11 +81,9 @@ const els = {
   recordCount: document.querySelector("#recordCount"),
   searchInput: document.querySelector("#searchInput"),
   backHomeBtn: document.querySelector("#backHomeBtn"),
-  newProjectBtn: document.querySelector("#newProjectBtn"),
+  importJsonBtn: document.querySelector("#importJsonBtn"),
   exportJsonBtn: document.querySelector("#exportJsonBtn"),
-  exportCsvBtn: document.querySelector("#exportCsvBtn"),
   saveProjectBtn: document.querySelector("#saveProjectBtn"),
-  deleteProjectBtn: document.querySelector("#deleteProjectBtn"),
   confirmProjectBtn: document.querySelector("#confirmProjectBtn"),
   frontImageViewer: document.querySelector("#frontImageViewer"),
   backImageViewer: document.querySelector("#backImageViewer"),
@@ -90,9 +91,9 @@ const els = {
   areaProjectName: null,
   areaResourceCode: null,
   areaCustomCode: null,
-  areaEditEntry: null,
+  areaEditEntry: document.querySelector("#areaEditEntry"),
   areaImageViewer: null,
-  areaDoneBtn: null,
+  areaDoneBtn: document.querySelector("#areaDoneBtn"),
   areaStatus: null,
   status: document.querySelector("#status")
 };
@@ -386,7 +387,82 @@ function showModal({ title, message, confirmText = "确认", cancelText = "取�
   });
 }
 
+function bootstrapProjects() {
+  return Array.isArray(window.__PROJECT_BOOTSTRAP__?.projects)
+    ? window.__PROJECT_BOOTSTRAP__.projects
+    : [];
+}
+
+function bootstrapPackageName() {
+  return window.__PROJECT_BOOTSTRAP__?.packageInfo?.packageName || state.packageName;
+}
+
+function localKey(name) {
+  return `${localStorePrefix}.${encodeURIComponent(bootstrapPackageName())}.${name}`;
+}
+
+function readLocalProjects() {
+  const raw = localStorage.getItem(localKey("projects"));
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {
+      localStorage.removeItem(localKey("projects"));
+    }
+  }
+  const projects = bootstrapProjects();
+  localStorage.setItem(localKey("projects"), JSON.stringify(projects));
+  return projects;
+}
+
+function writeLocalProjects(projects) {
+  localStorage.setItem(localKey("projects"), JSON.stringify(projects));
+}
+
+function localApi(url, options = {}) {
+  const method = (options.method || "GET").toUpperCase();
+
+  if (method === "GET" && url === "/api/package-info") {
+    const packageName = localStorage.getItem(localKey("packageName")) || bootstrapPackageName();
+    localStorage.setItem(localKey("packageName"), packageName);
+    return Promise.resolve({ packageName });
+  }
+
+  if (method === "GET" && url === "/api/projects") {
+    return Promise.resolve({ projects: readLocalProjects() });
+  }
+
+  if (method === "POST" && url === "/api/projects") {
+    const body = options.body ? JSON.parse(options.body) : {};
+    const projects = readLocalProjects();
+    const now = new Date().toISOString();
+    const incoming = {
+      ...body.project,
+      id: body.project?.id || crypto.randomUUID(),
+      updatedAt: now,
+      createdAt: body.project?.createdAt || now
+    };
+    const index = projects.findIndex((project) => project.id === incoming.id);
+    if (index >= 0) projects[index] = incoming;
+    else projects.unshift(incoming);
+    writeLocalProjects(projects);
+    return Promise.resolve({ project: incoming, projects });
+  }
+
+  const deleteMatch = url.match(/^\/api\/projects\/([^/]+)$/);
+  if (method === "DELETE" && deleteMatch) {
+    const id = decodeURIComponent(deleteMatch[1]);
+    const projects = readLocalProjects().filter((project) => project.id !== id);
+    writeLocalProjects(projects);
+    return Promise.resolve({ projects });
+  }
+
+  return Promise.reject(new Error("静态模式暂不支持这个操作。"));
+}
+
 function requestJson(url, options = {}) {
+  if (isStaticMode) return localApi(url, options);
   return fetch(url, {
     ...options,
     headers: { "Content-Type": "application/json", ...(options.headers || {}) }
@@ -477,8 +553,10 @@ function imageUrl(image) {
     const marker = "/public/originals/";
     const markerIndex = normalized.toLowerCase().indexOf(marker);
     if (markerIndex >= 0) {
-      return `/originals/${encodeURIComponent(normalized.slice(markerIndex + marker.length))}`;
+      const filename = encodeURIComponent(normalized.slice(markerIndex + marker.length));
+      return isStaticMode ? `originals/${filename}` : `/originals/${filename}`;
     }
+    if (isStaticMode) return "";
     return `/api/image?path=${encodeURIComponent(image.path)}`;
   }
   return "";
@@ -623,7 +701,6 @@ function ensureAreaView() {
             <b id="areaCustomCode"></b>
           </label>
         </section>
-        <button id="areaEditEntry" class="blue-action area-edit-entry" type="button">如视编辑入口</button>
       </div>
       <div class="area-image-card">
         <div class="preview-head">
@@ -631,9 +708,6 @@ function ensureAreaView() {
           <span>原始图片</span>
         </div>
         <div id="areaImageViewer" class="paper-image area-paper-image"></div>
-      </div>
-      <div class="area-actions">
-        <button id="areaDoneBtn" class="primary" type="button">填写完毕</button>
       </div>
       <div id="areaStatus" class="status" role="status"></div>
     </div>
@@ -644,16 +718,8 @@ function ensureAreaView() {
   els.areaProjectName = areaView.querySelector("#areaProjectName");
   els.areaResourceCode = areaView.querySelector("#areaResourceCode");
   els.areaCustomCode = areaView.querySelector("#areaCustomCode");
-  els.areaEditEntry = areaView.querySelector("#areaEditEntry");
   els.areaImageViewer = areaView.querySelector("#areaImageViewer");
-  els.areaDoneBtn = areaView.querySelector("#areaDoneBtn");
   els.areaStatus = areaView.querySelector("#areaStatus");
-  els.areaDoneBtn.addEventListener("click", markAreaFilled);
-  els.areaEditEntry.addEventListener("click", () => {
-    const url = state.currentProject.projectEditUrl;
-    if (url) window.open(url, "_blank", "noopener");
-    else showToast("如视编辑入口待配置");
-  });
 }
 
 function renderAreaPage(project) {
@@ -877,12 +943,17 @@ function routeToArea(id) {
 
 function setTopbarMode(mode) {
   const isHome = mode === "home";
+  const isDetail = mode === "detail";
+  const isArea = mode === "area";
   els.topbar.classList.toggle("compact", !isHome);
   els.topbarIntro.hidden = !isHome;
   els.backHomeBtn.hidden = isHome;
-  els.newProjectBtn.hidden = !isHome;
+  els.importJsonBtn.hidden = !isHome;
   els.exportJsonBtn.hidden = !isHome;
-  els.exportCsvBtn.hidden = !isHome;
+  els.saveProjectBtn.hidden = !isDetail;
+  els.confirmProjectBtn.hidden = !isDetail;
+  els.areaEditEntry.hidden = !isArea;
+  els.areaDoneBtn.hidden = !isArea;
 }
 
 function renderRoute() {
@@ -1016,27 +1087,6 @@ async function markAreaFilled() {
   }
 }
 
-async function deleteCurrentProject() {
-  const id = els.projectId.value;
-  if (!id) return;
-  const confirmed = await showModal({
-    title: "删除记录",
-    message: "确认删除这条项目记录？删除后无法恢复。",
-    confirmText: "删除",
-    danger: true
-  });
-  if (!confirmed) return;
-
-  try {
-    const { projects } = await requestJson(`/api/projects/${encodeURIComponent(id)}`, { method: "DELETE" });
-    state.projects = projects.map(normalizeProject);
-    routeToHome();
-    renderHome();
-  } catch (error) {
-    setStatus(error.message, "error");
-  }
-}
-
 function download(filename, content, type) {
   const blob = new Blob([content], { type });
   const url = URL.createObjectURL(blob);
@@ -1051,8 +1101,60 @@ function safeFilename(name) {
   return fieldValue(name || "审核结果").replace(/[\\/:*?"<>|]/g, "_").trim() || "审核结果";
 }
 
+function projectsJsonContent() {
+  return `${JSON.stringify(state.projects, null, 2)}\n`;
+}
+
 function exportJson() {
-  download(`${safeFilename(state.packageName)}.json`, JSON.stringify(state.projects, null, 2), "application/json;charset=utf-8");
+  download(`${safeFilename(state.packageName)}.json`, projectsJsonContent(), "application/json;charset=utf-8");
+}
+
+function pickJsonFile() {
+  return new Promise((resolve) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json,.json";
+    input.addEventListener("change", () => resolve(input.files?.[0] || null), { once: true });
+    input.click();
+  });
+}
+
+async function importJson() {
+  const file = await pickJsonFile();
+  if (!file) return;
+
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    const importedProjects = Array.isArray(parsed) ? parsed : parsed.projects;
+    if (!Array.isArray(importedProjects)) {
+      throw new Error("JSON 格式不正确，需要是项目数组，或包含 projects 数组。");
+    }
+    if (!importedProjects.every((project) => project && typeof project === "object" && !Array.isArray(project))) {
+      throw new Error("JSON 里存在无法识别的项目记录。");
+    }
+
+    const normalizedProjects = importedProjects.map(normalizeProject);
+    const confirmed = await showModal({
+      title: "导入 JSON",
+      message: `识别到 ${normalizedProjects.length} 条项目记录。确认后会覆盖当前浏览器里的项目数据。`,
+      confirmText: "确认导入"
+    });
+    if (!confirmed) return;
+
+    state.projects = normalizedProjects;
+    if (isStaticMode) writeLocalProjects(state.projects);
+    state.currentPage = 1;
+    routeToHome();
+    renderHome();
+    showToast("JSON 导入成功");
+  } catch (error) {
+    await showModal({
+      title: "导入失败",
+      message: error.message || "JSON 文件识别失败，请检查文件格式。",
+      confirmText: "知道了"
+    });
+  }
 }
 
 function csvCell(value) {
@@ -1082,7 +1184,21 @@ function exportCsv() {
 async function copyProjectJson(id) {
   const project = findProject(id);
   if (!project) return;
-  await navigator.clipboard.writeText(JSON.stringify(project, null, 2));
+  const text = JSON.stringify(project, null, 2);
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.append(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+  showToast("JSON 已复制");
 }
 
 async function toggleStar(id) {
@@ -1166,11 +1282,15 @@ els.searchInput.addEventListener("input", () => {
   renderHome();
 });
 els.backHomeBtn.addEventListener("click", handleBackHome);
-els.newProjectBtn.addEventListener("click", createNewProject);
+els.importJsonBtn.addEventListener("click", importJson);
 els.exportJsonBtn.addEventListener("click", exportJson);
-els.exportCsvBtn.addEventListener("click", exportCsv);
-els.deleteProjectBtn.addEventListener("click", deleteCurrentProject);
 els.confirmProjectBtn.addEventListener("click", confirmCurrentProject);
+els.areaDoneBtn.addEventListener("click", markAreaFilled);
+els.areaEditEntry.addEventListener("click", () => {
+  const url = state.currentProject.projectEditUrl;
+  if (url) window.open(url, "_blank", "noopener");
+  else showToast("如视编辑入口待配置");
+});
 
 els.projectTableBody.addEventListener("click", async (event) => {
   const actionButton = event.target.closest("[data-action]");

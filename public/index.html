@@ -4,12 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>采集确认单项目档案</title>
-    <script>
-      if (window.location.protocol === "file:") {
-        window.location.replace("http://127.0.0.1:5173/");
-      }
-    </script>
-    <link rel="stylesheet" href="./styles.css?v=20260820-review-ui">
+    <link rel="stylesheet" href="./styles.css?v=20260825-sticky-all">
   </head>
   <body>
     <header class="topbar">
@@ -18,10 +13,13 @@
         <p>首页管理项目，详情页左右对照审核纸质确认单和电子化确认单。</p>
       </div>
       <div class="top-actions">
-        <button id="backHomeBtn" class="ghost" type="button">返回首页</button>
-        <button id="newProjectBtn" class="ghost" type="button">新建记录</button>
-        <button id="exportJsonBtn" class="ghost" type="button">导出 JSON</button>
-        <button id="exportCsvBtn" class="ghost" type="button">导出 CSV</button>
+        <button id="backHomeBtn" class="ghost" type="button" hidden>返回首页</button>
+        <button id="importJsonBtn" class="ghost" type="button">导入 JSON</button>
+        <button id="exportJsonBtn" class="primary" type="button">导出 JSON</button>
+        <button id="saveProjectBtn" class="primary" form="projectForm" type="submit" hidden>保存修改</button>
+        <button id="confirmProjectBtn" class="ghost" type="button" hidden>审核完毕</button>
+        <button id="areaEditEntry" class="blue-action area-edit-entry" type="button" hidden>如视编辑入口</button>
+        <button id="areaDoneBtn" class="primary" type="button" hidden>填写完毕</button>
       </div>
     </header>
 
@@ -221,11 +219,6 @@
             </article>
           </section>
 
-          <div class="form-actions detail-actions">
-            <button id="saveProjectBtn" class="primary" type="submit">保存修改</button>
-            <button id="confirmProjectBtn" class="ghost" type="button">审核完毕</button>
-            <button id="deleteProjectBtn" class="ghost danger" type="button">删除记录</button>
-          </div>
           <div id="status" class="status" role="status"></div>
         </form>
       </section>
@@ -240,6 +233,7 @@
       </div>
     </template>
 
-    <script type="module" src="./app.js?v=20260820-review-ui"></script>
+    <script src="./bootstrap-data.js?v=20260825-top-actions"></script>
+    <script src="./app.js?v=20260825-top-actions"></script>
   </body>
 </html>

@@ -133,6 +133,9 @@ textarea:focus {
 }
 
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -141,6 +144,7 @@ textarea:focus {
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
 .topbar h1 {
@@ -174,6 +178,11 @@ textarea:focus {
 
 .topbar.compact .top-actions {
   order: -1;
+  width: 100%;
+}
+
+.topbar.compact #backHomeBtn {
+  margin-right: auto;
 }
 
 .workspace {
