@@ -137,7 +137,7 @@ async function writeOutputs(projects, conflicts, errors) {
     "utf8"
   );
 
-  const headers = ["来源文件", "项目ID", "项目名称", "resource_code", "custom_code", "审核状态", "区域信息", "星标", "备注", "包间数量", "适用人数最少", "适用人数最多", "餐厅基础信息", "包间预订", "更新时间"];
+  const headers = ["来源文件", "项目ID", "项目名称", "resource_code", "custom_id", "审核状态", "区域信息", "星标", "备注", "包间数量", "适用人数最少", "适用人数最多", "餐厅基础信息", "包间预订", "更新时间"];
   const rows = cleanProjects.map((project) => {
     const summary = roomSummary(project);
     return [
@@ -145,7 +145,7 @@ async function writeOutputs(projects, conflicts, errors) {
       project.id,
       project.restaurantName,
       project.resource_code,
-      project.custom_code,
+      project.custom_id || project.custom_code,
       project.status,
       project.areaInfoStatus,
       project.starred ? "是" : "否",

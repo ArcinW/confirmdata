@@ -103,7 +103,7 @@ function emptyProject() {
     id: "",
     restaurantName: "",
     resource_code: "",
-    custom_code: "",
+    custom_id: "",
     status: "待审核",
     areaInfoStatus: "待填写",
     projectEditUrl: "",
@@ -183,8 +183,9 @@ function normalizeProject(project = {}) {
   normalized.status = auditStatuses.includes(normalized.status) ? normalized.status : "待审核";
   normalized.areaInfoStatus = areaInfoStatuses.includes(normalized.areaInfoStatus) ? normalized.areaInfoStatus : "待填写";
   normalized.resource_code = fieldValue(normalized.resource_code);
-  normalized.custom_code = fieldValue(normalized.custom_code);
-  normalized.projectEditUrl = fieldValue(normalized.projectEditUrl);
+  normalized.custom_id = fieldValue(normalized.custom_id || normalized.custom_code);
+  delete normalized.custom_code;
+  normalized.projectEditUrl = fieldValue(normalized.projectEditUrl || realseeEditUrl(normalized.resource_code));
   normalized.starred = Boolean(normalized.starred);
   normalized.remarks = normalizeRemarks(normalized.remarks);
   normalized.warnings = Array.isArray(project.warnings) ? project.warnings : [];
@@ -203,6 +204,12 @@ function fieldValue(value) {
   if (value === null || value === undefined) return "";
   if (Array.isArray(value)) return value.join("、");
   return String(value);
+}
+
+function realseeEditUrl(resourceCode) {
+  const code = fieldValue(resourceCode).trim();
+  if (!code) return "";
+  return `https://my.realsee.cn/capture-3d/space-list/${encodeURIComponent(code)}/showcase`;
 }
 
 function splitValues(value) {
@@ -403,15 +410,25 @@ function localKey(name) {
 
 function readLocalProjects() {
   const raw = localStorage.getItem(localKey("projects"));
+  const bootstrap = bootstrapProjects();
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed)) {
+        const storedIds = new Set(parsed.map((project) => project?.id).filter(Boolean));
+        const missingBootstrapProjects = bootstrap.filter((project) => project?.id && !storedIds.has(project.id));
+        if (missingBootstrapProjects.length) {
+          const merged = [...parsed, ...missingBootstrapProjects];
+          writeLocalProjects(merged);
+          return merged;
+        }
+        return parsed;
+      }
     } catch {
       localStorage.removeItem(localKey("projects"));
     }
   }
-  const projects = bootstrapProjects();
+  const projects = bootstrap;
   localStorage.setItem(localKey("projects"), JSON.stringify(projects));
   return projects;
 }
@@ -697,7 +714,7 @@ function ensureAreaView() {
             <b id="areaResourceCode"></b>
           </label>
           <label>
-            <span>custom_code</span>
+            <span>custom_id</span>
             <b id="areaCustomCode"></b>
           </label>
         </section>
@@ -727,7 +744,7 @@ function renderAreaPage(project) {
   state.currentProject = normalizeProject(project);
   els.areaProjectName.textContent = state.currentProject.restaurantName || "未命名项目";
   els.areaResourceCode.textContent = state.currentProject.resource_code || "";
-  els.areaCustomCode.textContent = state.currentProject.custom_code || "";
+  els.areaCustomCode.textContent = state.currentProject.custom_id || "";
   renderImageSlot(els.areaImageViewer, roomInfoImage(state.currentProject), 1);
   els.areaStatus.textContent = "";
   els.areaStatus.className = "status";
@@ -742,7 +759,7 @@ function renderForm(project) {
   setNamedValue("restaurantName", state.currentProject.restaurantName);
   setNamedValue("restaurantNamePaper", state.currentProject.restaurantName);
   setNamedValue("resource_code", state.currentProject.resource_code);
-  setNamedValue("custom_code", state.currentProject.custom_code);
+  setNamedValue("custom_id", state.currentProject.custom_id);
   setNamedValue("projectNotes", state.currentProject.projectNotes);
   renderBasics(state.currentProject);
   renderBooking(state.currentProject);
@@ -817,7 +834,7 @@ function collectForm(overrides = {}) {
     id: els.projectId.value || state.currentProject.id || "",
     restaurantName: form.get("restaurantName")?.trim() || null,
     resource_code: form.get("resource_code")?.trim() || "",
-    custom_code: form.get("custom_code")?.trim() || "",
+    custom_id: form.get("custom_id")?.trim() || "",
     totalPrivateRoomCount: form.get("totalPrivateRoomCount")?.trim() || null,
     projectNotes: form.get("projectNotes")?.trim() || null,
     warnings: state.currentProject.warnings || [],
@@ -1162,11 +1179,11 @@ function csvCell(value) {
 }
 
 function exportCsv() {
-  const headers = ["餐厅名称", "resource_code", "custom_code", "审核状态", "区域信息", "星标", "备注", "包间数量", "适用人数最少", "适用人数最多", "餐厅基础信息", "包间预订"];
+  const headers = ["餐厅名称", "resource_code", "custom_id", "审核状态", "区域信息", "星标", "备注", "包间数量", "适用人数最少", "适用人数最多", "餐厅基础信息", "包间预订"];
   const rows = state.projects.map((project) => [
     project.restaurantName,
     project.resource_code,
-    project.custom_code,
+    project.custom_id,
     project.status,
     project.areaInfoStatus,
     project.starred ? "是" : "否",
@@ -1287,7 +1304,7 @@ els.exportJsonBtn.addEventListener("click", exportJson);
 els.confirmProjectBtn.addEventListener("click", confirmCurrentProject);
 els.areaDoneBtn.addEventListener("click", markAreaFilled);
 els.areaEditEntry.addEventListener("click", () => {
-  const url = state.currentProject.projectEditUrl;
+  const url = realseeEditUrl(state.currentProject.resource_code) || state.currentProject.projectEditUrl;
   if (url) window.open(url, "_blank", "noopener");
   else showToast("如视编辑入口待配置");
 });
