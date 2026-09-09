@@ -1,0 +1,4 @@
+node_modules/
+*.traineddata
+tools/.ocr-cache/
+tools/ocr-output.json

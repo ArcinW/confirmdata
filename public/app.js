@@ -408,6 +408,37 @@ function localKey(name) {
   return `${localStorePrefix}.${encodeURIComponent(bootstrapPackageName())}.${name}`;
 }
 
+function timestampValue(value) {
+  const time = Date.parse(value || "");
+  return Number.isFinite(time) ? time : 0;
+}
+
+function mergeStoredProjectsWithBootstrap(storedProjects, bootstrap) {
+  const storedById = new Map(storedProjects.map((project) => [project?.id, project]).filter(([id]) => id));
+  let changed = false;
+
+  for (const bootstrapProject of bootstrap) {
+    if (!bootstrapProject?.id) continue;
+    const storedProject = storedById.get(bootstrapProject.id);
+    if (!storedProject) {
+      storedProjects.push(bootstrapProject);
+      changed = true;
+      continue;
+    }
+
+    if (timestampValue(bootstrapProject.updatedAt) <= timestampValue(storedProject.updatedAt)) continue;
+    Object.assign(storedProject, bootstrapProject, {
+      status: storedProject.status,
+      areaInfoStatus: storedProject.areaInfoStatus,
+      starred: storedProject.starred,
+      remarks: storedProject.remarks
+    });
+    changed = true;
+  }
+
+  return changed ? storedProjects : null;
+}
+
 function readLocalProjects() {
   const raw = localStorage.getItem(localKey("projects"));
   const bootstrap = bootstrapProjects();
@@ -415,10 +446,8 @@ function readLocalProjects() {
     try {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) {
-        const storedIds = new Set(parsed.map((project) => project?.id).filter(Boolean));
-        const missingBootstrapProjects = bootstrap.filter((project) => project?.id && !storedIds.has(project.id));
-        if (missingBootstrapProjects.length) {
-          const merged = [...parsed, ...missingBootstrapProjects];
+        const merged = mergeStoredProjectsWithBootstrap(parsed, bootstrap);
+        if (merged) {
           writeLocalProjects(merged);
           return merged;
         }
@@ -565,6 +594,7 @@ function imageUrl(image) {
   if (!image) return "";
   if (image.dataUrl) return image.dataUrl;
   if (image.url) return image.url;
+  if (image.originalUrl) return image.originalUrl;
   if (image.path) {
     const normalized = image.path.replaceAll("\\", "/");
     const marker = "/public/originals/";
@@ -687,6 +717,39 @@ function renderPaperImages(project) {
   const images = project.sourceImages || [];
   renderImageSlot(els.frontImageViewer, images[0], 0);
   renderImageSlot(els.backImageViewer, images[1], 1);
+  updateImageMoveButtons();
+}
+
+function updateImageMoveButtons() {
+  const count = (state.currentProject.sourceImages || []).length;
+  for (const button of document.querySelectorAll("[data-image-move]")) {
+    const index = Number(button.dataset.imageIndex);
+    const target = index + (button.dataset.imageMove === "up" ? -1 : 1);
+    button.disabled = count < 2 || target < 0 || target >= count;
+  }
+}
+
+async function moveSourceImage(index, direction) {
+  const images = Array.isArray(state.currentProject.sourceImages)
+    ? [...state.currentProject.sourceImages]
+    : [];
+  const target = index + (direction === "up" ? -1 : 1);
+  if (index < 0 || index >= images.length || target < 0 || target >= images.length) return;
+
+  [images[index], images[target]] = [images[target], images[index]];
+  state.currentProject.sourceImages = images;
+  renderPaperImages(state.currentProject);
+
+  if (!state.currentProject.id) return;
+  try {
+    const stored = findProject(state.currentProject.id) || state.currentProject;
+    const saved = await saveProjectObject({ ...stored, sourceImages: images });
+    state.currentProject.sourceImages = saved.sourceImages;
+    renderHome();
+    showToast("图片顺序已更新");
+  } catch (error) {
+    showToast("图片顺序保存失败");
+  }
 }
 
 function roomInfoImage(project) {
@@ -1332,6 +1395,12 @@ document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-add]");
   if (!button) return;
   if (button.dataset.add === "basic") addBasicRow();
+});
+
+document.addEventListener("click", (event) => {
+  const moveButton = event.target.closest("[data-image-move]");
+  if (!moveButton || moveButton.disabled) return;
+  moveSourceImage(Number(moveButton.dataset.imageIndex), moveButton.dataset.imageMove);
 });
 
 window.addEventListener("hashchange", renderRoute);
