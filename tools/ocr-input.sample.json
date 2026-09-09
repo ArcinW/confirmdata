@@ -1,0 +1,36 @@
+[
+  {
+    "resource_code": "aDP8Ld3LN2CegMnFAD",
+    "custom_id": "69530551655",
+    "restaurantName": "徐记海鲜（半坡店）",
+    "images": [
+      {
+        "side": "正面",
+        "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/T-W4YE8XER/console/travelCert/2026-02-10/1770696022-0d0572a13d83c59a02d820ef46e1abb2-7mXVjP7QGXp5LukWmO-_g.jpg"
+      },
+      {
+        "side": "反面",
+        "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/T-W4YE8XER/console/travelCert/2026-02-10/1770696022-495e75e5c9fe42fd11956636d8f06ccf-yk0Kn0iVbN5rC1tfKKM65.jpg"
+      }
+    ]
+  },
+  {
+    "resource_code": "goQ9kJ6QgYuk3XgiMo",
+    "custom_id": "69518206201",
+    "restaurantName": "徐记海鲜（星沙｜松雅湖店）",
+    "images": [
+      {
+        "side": "正面",
+        "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/T-W4YE8XER/console/travelCert/2026-02-10/1770692988-_____2026-02-10_110847_338-bCI_J-WVhL8rDjcVGTaNG.jpg"
+      },
+      {
+        "side": "反面",
+        "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/T-W4YE8XER/console/travelCert/2026-02-10/1770692988-_____2026-02-10_110855_172-Bo1xJZVus3Mv09vYeUPI-.jpg"
+      },
+      {
+        "side": "反面补页",
+        "url": "https://vr-public.realsee-cdn.cn/release/uwork/vrcustomer/T-W4YE8XER/console/travelCert/2026-02-10/1770692988-_____2026-02-10_110902_969-XaNS6l8WdplT-RybTM2cG.jpg"
+      }
+    ]
+  }
+]

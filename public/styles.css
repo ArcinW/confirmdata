@@ -1243,6 +1243,17 @@ main {
   font-size: 13px;
 }
 
+.preview-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-head-actions .mini:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .paper-image {
   padding: 12px;
 }

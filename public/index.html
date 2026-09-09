@@ -76,7 +76,11 @@
             <aside class="paper-preview">
               <div class="preview-head">
                 <h2>纸质确认单第一页</h2>
-                <span>原始图片</span>
+                <div class="preview-head-actions">
+                  <span>原始图片</span>
+                  <button class="mini" type="button" data-image-move="up" data-image-index="0">上移</button>
+                  <button class="mini" type="button" data-image-move="down" data-image-index="0">下移</button>
+                </div>
               </div>
               <div id="frontImageViewer" class="paper-image"></div>
             </aside>
@@ -155,7 +159,11 @@
             <aside class="paper-preview">
               <div class="preview-head">
                 <h2>纸质确认单第二页</h2>
-                <span>原始图片</span>
+                <div class="preview-head-actions">
+                  <span>原始图片</span>
+                  <button class="mini" type="button" data-image-move="up" data-image-index="1">上移</button>
+                  <button class="mini" type="button" data-image-move="down" data-image-index="1">下移</button>
+                </div>
               </div>
               <div id="backImageViewer" class="paper-image"></div>
             </aside>
@@ -234,6 +242,6 @@
     </template>
 
     <script src="./bootstrap-data.js?v=20260904-import-100"></script>
-    <script src="./app.js?v=20260904-import-100"></script>
+    <script src="./app.js?v=20260904-recognition-merge"></script>
   </body>
 </html>
