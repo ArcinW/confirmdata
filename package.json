@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "ocr": "node tools/ocr-recognize.js",
-    "build:bootstrap": "node tools/build-bootstrap.js"
+    "build:bootstrap": "node tools/build-bootstrap.js",
+    "test": "node tools/test-local-cache.mjs"
   },
   "engines": {
     "node": ">=18"
