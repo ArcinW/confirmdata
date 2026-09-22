@@ -394,12 +394,6 @@ function showModal({ title, message, confirmText = "确认", cancelText = "取�
   });
 }
 
-function bootstrapProjects() {
-  return Array.isArray(window.__PROJECT_BOOTSTRAP__?.projects)
-    ? window.__PROJECT_BOOTSTRAP__.projects
-    : [];
-}
-
 function bootstrapPackageName() {
   return window.__PROJECT_BOOTSTRAP__?.packageInfo?.packageName || state.packageName;
 }
@@ -408,57 +402,20 @@ function localKey(name) {
   return `${localStorePrefix}.${encodeURIComponent(bootstrapPackageName())}.${name}`;
 }
 
-function timestampValue(value) {
-  const time = Date.parse(value || "");
-  return Number.isFinite(time) ? time : 0;
-}
-
-function mergeStoredProjectsWithBootstrap(storedProjects, bootstrap) {
-  const storedById = new Map(storedProjects.map((project) => [project?.id, project]).filter(([id]) => id));
-  let changed = false;
-
-  for (const bootstrapProject of bootstrap) {
-    if (!bootstrapProject?.id) continue;
-    const storedProject = storedById.get(bootstrapProject.id);
-    if (!storedProject) {
-      storedProjects.push(bootstrapProject);
-      changed = true;
-      continue;
-    }
-
-    if (timestampValue(bootstrapProject.updatedAt) <= timestampValue(storedProject.updatedAt)) continue;
-    Object.assign(storedProject, bootstrapProject, {
-      status: storedProject.status,
-      areaInfoStatus: storedProject.areaInfoStatus,
-      starred: storedProject.starred,
-      remarks: storedProject.remarks
-    });
-    changed = true;
-  }
-
-  return changed ? storedProjects : null;
-}
-
 function readLocalProjects() {
   const raw = localStorage.getItem(localKey("projects"));
-  const bootstrap = bootstrapProjects();
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        const merged = mergeStoredProjectsWithBootstrap(parsed, bootstrap);
-        if (merged) {
-          writeLocalProjects(merged);
-          return merged;
-        }
-        return parsed;
-      }
+      if (Array.isArray(parsed)) return parsed;
     } catch {
-      localStorage.removeItem(localKey("projects"));
+      // 无效缓存会在下方重置为空数组。
     }
+    localStorage.removeItem(localKey("projects"));
   }
-  const projects = bootstrap;
-  localStorage.setItem(localKey("projects"), JSON.stringify(projects));
+
+  const projects = [];
+  writeLocalProjects(projects);
   return projects;
 }
 
@@ -1222,8 +1179,8 @@ async function importJson() {
     });
     if (!confirmed) return;
 
+    if (isStaticMode) writeLocalProjects(normalizedProjects);
     state.projects = normalizedProjects;
-    if (isStaticMode) writeLocalProjects(state.projects);
     state.currentPage = 1;
     routeToHome();
     renderHome();
